@@ -86,6 +86,7 @@ function moviesApi(app) {
             next(err);
         }
     });
+    /*
     //reto
     // creamos nuestro metodo patch en el router de nuestro servidor recibiendo el id de la movie
     router.patch('/:movieId', async (req, res, next) => {
@@ -106,6 +107,7 @@ function moviesApi(app) {
             next(err);
         }
     });
+    */
 }
 
 module.exports = moviesApi;

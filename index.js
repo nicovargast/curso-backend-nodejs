@@ -21,6 +21,10 @@ app.get('/bisiesto/:anio', function (req, res) {
 
 const moviesApi = require('./routes/movies');
 
+// Middleware body parser
+// Esto permite que al enviar datos en formato json en POST, este pueda interpretarlos
+app.use(express.json());
+
 moviesApi(app);
 
 
