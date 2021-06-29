@@ -21,12 +21,16 @@ app.get('/bisiesto/:anio', function (req, res) {
 
 const moviesApi = require('./routes/movies');
 
+const { logErrors, errorHandler } = require('./utils/middleware/errorHandlers.js')
+
 // Middleware body parser
 // Esto permite que al enviar datos en formato json en POST, este pueda interpretarlos
 app.use(express.json());
 
 moviesApi(app);
 
+app.use(logErrors);
+app.use(errorHandler);
 
 app.listen(config.port, function() {
     console.log(`Listening http://localhost:${config.port}`);
