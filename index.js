@@ -21,15 +21,28 @@ app.get('/bisiesto/:anio', function (req, res) {
 
 const moviesApi = require('./routes/movies');
 
-const { logErrors, errorHandler } = require('./utils/middleware/errorHandlers.js')
+const { 
+  logErrors, 
+  errorHandler, 
+  wrapErrors 
+} = require('./utils/middleware/errorHandlers.js'); 
+
+const notFoundHandler = require('./utils/middleware/notFoundHandler');
 
 // Middleware body parser
 // Esto permite que al enviar datos en formato json en POST, este pueda interpretarlos
 app.use(express.json());
 
+
+// Rutas
 moviesApi(app);
 
+// CATCH 404
+app.use(notFoundHandler);
+
+// Errors Middleware
 app.use(logErrors);
+app.use(wrapErrors);
 app.use(errorHandler);
 
 app.listen(config.port, function() {
