@@ -29,4 +29,22 @@ describe('routes - movies', function() {
     });
   });
 
+  describe('POST /movies', function() {
+    it('should respond with status 201', function(done){
+      request.post('/api/movies').expect(201,done);
+    });
+
+    it('should respond with a confirmation lol', function(done){
+      request.post('/api/movies').end((err, res) => {
+        assert.throws
+        assert.deepEqual(res.body, {
+          data: moviesMock,
+          message: 'movies listed'
+        });
+
+        done();
+      });
+    });
+  });
+
 });
